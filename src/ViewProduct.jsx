@@ -3,41 +3,37 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { env } from './config';
 
-function Userview() {
+function ViewProduct() {
     const params = useParams();
     console.log(params);
     const [searchParams, setSearchParams]= useSearchParams();
     console.log(...searchParams);
 
-const[userData,setUserData]=useState({})
+const[productData,setProductData]=useState({})
     useEffect(()=>{
-      loadUser()
+      loadProduct()
     },[])
-    let loadUser = async () => {
+    let loadProduct = async () => {
       try{
-        let user = await axios.get(`${env.api}/viewuser/${params.id}`)
-      setUserData(user.data)
+        let product = await axios.get(`${env.api}/viewproduct/${params.id}`)
+      setProductData(product.data)
       } catch(error){
         console.log(error)
       }
      
     }
 
-
-
-
-    
   return (
     <>
-    <h2>{userData.name}</h2>
-    <h3>{userData.position}</h3>
-    <h3>{userData.office}</h3>
-    <h3>{userData.age}</h3>
-    <h3>{userData.startDate}</h3>
-    <h3>{userData.salary}</h3>
+    <h2>{productData.product}</h2>
+    <h3>{productData.model}</h3>
+    <h3>{productData.company}</h3>
+    <h3>{productData.color}</h3>
+    <h3>{productData.price}</h3>
+    
 
     </>
   )
 }
 
-export default Userview;
+export default ViewProduct

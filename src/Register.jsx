@@ -6,7 +6,7 @@ import axios from "axios";
 import { env } from "./config";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+function Register() {
   let navigate = useNavigate();
 //   let username = "abc";
 //   let pass = "123";
@@ -20,14 +20,15 @@ function Login() {
 
   let formik = useFormik({
     initialValues: {
+      name:"",
       email: "",
       password: "",
     },
     onSubmit: async (values) => {
       try {
-        await axios.post(`${env.api}/login`, values);
-       
-        navigate("/portal/dashboard");
+        await axios.post(`${env.api}/register`, values);
+        
+        navigate("/");
       } catch (error) {
         alert(error.response.messsage)
         console.log(error);
@@ -49,7 +50,18 @@ function Login() {
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
                     <form class="user" onSubmit={formik.handleSubmit}>
-                      <div class="form-group">
+                    <div class="form-group">      
+                        <input
+                          class="form-control form-control-user"
+                         
+                          type={"text"}
+                          value={formik.values.name}
+                          onChange={formik.handleChange}
+                          name="name"
+                          placeholder="Enter Name"
+                        />
+                      </div>
+                      <div class="form-group">      
                         <input
                           class="form-control form-control-user"
                           id="exampleInputEmail"
@@ -71,28 +83,18 @@ function Login() {
                           name="password"
                         />
                       </div>
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox small">
-                          <input
-                            type="checkbox"
-                            class="custom-control-input"
-                            id="customCheck"
-                          />
-                          <label class="custom-control-label" for="customCheck">
-                            Remember Me
-                          </label>
-                        </div>
-                      </div>
+                     
 
                       <button
                         type="submit"
                         class="btn btn-primary btn-user btn-block"
                       >
-                        Login
+                        Register
                       </button>
                     </form>
                     <div class='text-center p-3 mt-2'>
-                    <p>Not a member? <Link to={'/register'} className='btn btn-outline-info'>Register</Link></p>
+                    <p>Already a member?
+                        please <Link to={'/'} className='btn btn-outline-info'>Login</Link></p>
                     
                     </div>
                   </div>
@@ -106,4 +108,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

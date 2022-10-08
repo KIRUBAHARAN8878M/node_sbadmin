@@ -16,7 +16,11 @@ import Users from './Users';
 import CreateUser from './CreateUser';
 import Userview from './Userview';
 import EditUser from './EditUser';
-
+import Products from './Products';
+import CreateProduct from './CreateProduct';
+import  ViewProduct from './ViewProduct';
+import EditProduct from './EditProduct';
+import Register from './Register';
 
 
 
@@ -26,6 +30,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
         <Route path="/portal" element={<Portal />} >
 
           <Route path="dashboard" element={<Dashboard />} />
@@ -35,6 +41,10 @@ function App() {
           <Route path="users/edit/:id" element={<EditUser />} />
           <Route path="create-user" element={<CreateUser />} />
 
+          <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<ViewProduct />} />
+          <Route path="products/edit/:id" element={<EditProduct />} />
+          <Route path="create-product" element={<CreateProduct />} />
          
 
         </Route>

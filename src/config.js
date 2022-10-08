@@ -1,3 +1,3 @@
 export const env ={
-api :"https://node-app-k.herokuapp.com"
+api :"https://backend-perfect-api.herokuapp.com"
 }

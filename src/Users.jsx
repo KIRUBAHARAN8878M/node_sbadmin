@@ -17,7 +17,7 @@ function Users() {
 
     let loadData = async () => {
         setLoading(true);
-        let users = await axios.get(`${env.api}/users?limit=100&offset=0`);
+        let users = await axios.get(`${env.api}/getallusers?limit=100&offset=0`);
         setUsers(users.data);
         setLoading(false);
     }
@@ -26,7 +26,7 @@ let userDelete = async (id) =>{
     try {
         let ask = window.confirm("Are You Sure! Do You Want To Delete This Data?");
         if(ask){
-            await axios.delete(`${env.api}/user/${id}`);
+            await axios.delete(`${env.api}/deleteuser/${id}`);
         }
         
         loadData();
